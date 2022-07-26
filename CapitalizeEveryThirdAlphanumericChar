@@ -1,0 +1,31 @@
+package main
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
+
+func CapitalizeEveryThirdAlphanumericChar(s string) string {
+	// Lowercase all value in s
+	s = strings.ToLower(s)
+
+	// Variables
+	wordArr := []rune(s) // string to char array
+	length := len(s)     // length of string
+
+  counter := 0
+	for i := 0; i < length; i++ {
+		if !unicode.IsPunct(wordArr[i]) {
+		  counter++
+			if counter % 3 == 0 {
+			  wordArr[i] = unicode.ToUpper(wordArr[i])
+			}
+		}
+	}
+
+	return string(wordArr)
+}
+
+func main() {
+	fmt.Printf(CapitalizeEveryThirdAlphanumericChar("Aspiration.com"))
+}
